@@ -7,6 +7,8 @@ from easydict import EasyDict as edict
 
 config = edict()
 
+config.useCuda = False
+
 config.OUTPUT_DIR = ''
 config.LOG_DIR = ''
 config.DATA_DIR = ''

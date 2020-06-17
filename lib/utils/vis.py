@@ -6,7 +6,7 @@ from mpl_toolkits.mplot3d import Axes3D
 
 
 def drawskeleton(img, kps, thickness=3, lcolor=(255,0,0), rcolor=(0,0,255), mpii=2):
-
+    #print(len(kps))
     if mpii == 0: # h36m with mpii joints
         connections = [[0, 1], [1, 2], [2, 3], [0, 4], [4, 5],
                        [5, 6], [0, 8], [8, 9], [9, 10],
@@ -24,10 +24,13 @@ def drawskeleton(img, kps, thickness=3, lcolor=(255,0,0), rcolor=(0,0,255), mpii
         LR = np.array([0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0], dtype=bool)
 
     for j,c in enumerate(connections):
+        #print("drawing line...")
         start = map(int, kps[c[0]])
         end = map(int, kps[c[1]])
         start = list(start)
         end = list(end)
+        #line = "Start: ("+str(start[0])+" , "+str(start[1])+") , End: ("+str(end[0])+" , "+str(end[1])+")"
+        #print(line)
         cv2.line(img, (start[0], start[1]), (end[0], end[1]), lcolor if LR[j] else rcolor, thickness)
 
 
